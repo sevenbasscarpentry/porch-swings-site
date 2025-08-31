@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="220" viewBox="0 0 900 220">
+  <defs><style>.big{ font:800 72px Inter,system-ui; fill:#111827; } .small{ font:700 28px Inter,system-ui; letter-spacing:2px; fill:#059669; }</style></defs>
+  <rect x="20" y="60" width="80" height="40" rx="6" fill="#059669"/>
+  <rect x="20" y="110" width="80" height="12" rx="6" fill="#059669"/>
+  <text x="130" y="115" class="big">Seven Bass</text>
+  <text x="130" y="160" class="small">CARPENTRY</text>
+</svg>
