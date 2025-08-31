@@ -1,19 +1,17 @@
-# Seven Bass Carpentry — Fixed Site (Full Content)
+# Seven Bass Carpentry — Site v3 (mobile nav + reviews + story image)
 
-This build restores the full homepage sections and wires the logo + images to your `/assets` folder.
+What changed
+- Mobile navigation added (hamburger on small screens).
+- Logo now tries PNG → SVG → WEBP and falls back to text if not found.
+- Story image points to `/assets/OurStory.webp` (with a placeholder fallback).
+- New Reviews section with horizontal slider and buttons; link to Facebook reviews.
+- Netlify Forms posts to `/success.html` (avoids 404).
 
-## Expected assets (place in /assets)
-- logo5_stamp.png                  # your chosen logo
-- hero.webp                         # hero image
-- gallery-01.webp ... gallery-14.webp  # 14 gallery images
+Assets expected in /assets
+- logo5_stamp.png (preferred) or logo5_stamp.svg or logo5_stamp.webp
+- OurStory.webp
+- hero.webp
+- gallery-01.webp ... gallery-14.webp
 
-> If an asset is missing at deploy time, the page falls back to an Unsplash placeholder so nothing breaks.
-> Once your files exist in /assets (Git or zip), they are preferred automatically.
-
-## Netlify Forms
-- Form posts to `/success.html` to avoid 404 after submit.
-- In Netlify → Forms → Notifications, add Email → `sevenbasscarpentry@gmail.com`.
-
-## Deploy
-- Netlify → Sites → Add new → Deploy manually → drag this zip.
-- Or push the contents to your GitHub repo and use Import from Git (no build step needed).
+Deploy
+- Drag the zip into Netlify (manual deploy), or commit files to GitHub and let Netlify auto-deploy.

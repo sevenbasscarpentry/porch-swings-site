@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Seven Bass Carpentry | Handcrafted Porch Bed Swings in Georgia</title>
   <meta name="description" content="Seven Bass Carpentry is a family-run builder of custom porch bed swings, daybeds, and bench swings. Delivery & install across Metro Atlanta and North Georgia.">
+  <meta name="theme-color" content="#059669">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,17 +20,37 @@
   <header class="sticky top-0 z-40 backdrop-blur bg-white/80 border-b border-neutral-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-3">
-        <img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry" class="h-8" onerror="this.style.display='none';document.getElementById('logo-fallback').style.display='block';">
-        <span id="logo-fallback" class="hidden font-bold">Seven Bass Carpentry</span>
+        <img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry" class="h-8"
+             onerror="this.onerror=null;this.src='/assets/logo5_stamp.svg';this.style.display='block';document.getElementById('logo-fallback').classList.add('hidden');">
+        <span id="logo-fallback" class="font-bold">Seven Bass Carpentry</span>
       </a>
+      <!-- Desktop nav -->
       <nav class="hidden md:flex gap-6 text-sm">
         <a href="#work" class="hover:text-emerald-700">Our Work</a>
         <a href="#options" class="hover:text-emerald-700">Options</a>
         <a href="#process" class="hover:text-emerald-700">Process</a>
+        <a href="#reviews" class="hover:text-emerald-700">Reviews</a>
         <a href="#faq" class="hover:text-emerald-700">FAQ</a>
         <a href="#contact" class="hover:text-emerald-700">Contact</a>
       </nav>
-      <a href="#contact" class="hidden md:inline-flex items-center rounded-2xl bg-emerald-600 px-4 py-2 text-white font-medium shadow-sm hover:bg-emerald-700">Get a Quote</a>
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="hidden md:inline-flex items-center rounded-2xl bg-emerald-600 px-4 py-2 text-white font-medium shadow-sm hover:bg-emerald-700">Get a Quote</a>
+        <!-- Mobile menu button -->
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl ring-1 ring-neutral-300" aria-label="Open menu">
+          ☰
+        </button>
+      </div>
+    </div>
+    <!-- Mobile nav panel -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-neutral-200 bg-white">
+      <nav class="mx-auto max-w-7xl px-4 py-3 grid gap-2 text-sm">
+        <a href="#work" class="py-2">Our Work</a>
+        <a href="#options" class="py-2">Options</a>
+        <a href="#process" class="py-2">Process</a>
+        <a href="#reviews" class="py-2">Reviews</a>
+        <a href="#faq" class="py-2">FAQ</a>
+        <a href="#contact" class="py-2">Contact</a>
+      </nav>
     </div>
   </header>
 
@@ -60,7 +81,7 @@
           <div class="aspect-[4/3] overflow-hidden rounded-3xl shadow-lg border border-neutral-200">
             <picture>
               <source srcset="/assets/hero.webp" type="image/webp">
-              <img src="https://images.unsplash.com/photo-1598928506311-6b9b333a8a8b?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry — hero" class="h-full w-full object-cover">
+              <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry — hero" class="h-full w-full object-cover">
             </picture>
           </div>
           <div class="absolute -bottom-4 -left-4 bg-white rounded-2xl px-4 py-3 shadow border border-neutral-200">
@@ -76,140 +97,126 @@
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl">
         <h2 class="text-3xl font-bold">Our Work</h2>
-        <p class="mt-3 text-neutral-700">We build bed swings, daybeds, and classic bench swings. Each piece is made by hand, then finished for outdoor use. Here are recent builds—ask about custom details!</p>
+        <p class="mt-3 text-neutral-700">Bed swings, daybeds, and classic bench swings — each handcrafted and finished for outdoor use.</p>
       </div>
       <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-01.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1598928506311-6b9b333a8a8b?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #1" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #1</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-01.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1598928506311-6b9b333a8a8b?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 1" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 1</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-02.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1616486886892-7bff2b247933?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #2" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #2</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-02.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1616486886892-7bff2b247933?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 2" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 2</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-03.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #3" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #3</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-03.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 3" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 3</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-04.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #4" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #4</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-04.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 4" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 4</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-05.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #5" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #5</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-05.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 5" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 5</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-06.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1629981289935-4a0cc4f9f8cc?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #6" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #6</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-06.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1629981289935-4a0cc4f9f8cc?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 6" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 6</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-07.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #7" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #7</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-07.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1560184897-ae75f418493e?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 7" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 7</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-08.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1582582621959-2e3fbc3cb07a?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #8" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #8</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-08.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1582582621959-2e3fbc3cb07a?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 8" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 8</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-09.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #9" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #9</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-09.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 9" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 9</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-10.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #10" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #10</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-10.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 10" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 10</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-11.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #11" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #11</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-11.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 11" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 11</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-12.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #12" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #12</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-12.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 12" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 12</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-13.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #13" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #13</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-13.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 13" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 13</figcaption>
+    </figure>
 
-        <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm">
-          <picture>
-            <source srcset="/assets/gallery-14.webp" type="image/webp">
-            <img src="https://images.unsplash.com/photo-1582582615172-9a9373ffeecc?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry project #14" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
-          </picture>
-          <figcaption class="p-4 text-sm text-neutral-700">Seven Bass Carpentry project #14</figcaption>
-        </figure>
-    
+    <figure class="group overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm snap-center shrink-0 w-80 sm:w-auto">
+      <picture>
+        <source srcset="/assets/gallery-14.webp" type="image/webp">
+        <img src="https://images.unsplash.com/photo-1582582615172-9a9373ffeecc?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass project 14" class="h-56 w-full object-cover group-hover:scale-[1.02] transition">
+      </picture>
+      <figcaption class="p-4 text-sm text-neutral-700">Project 14</figcaption>
+    </figure>
       </div>
     </div>
   </section>
 
-  <!-- Styles -->
+  <!-- Options -->
   <section id="options" class="py-16 sm:py-24 bg-neutral-100 border-y border-neutral-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl">
@@ -266,7 +273,7 @@
           <p class="mt-3 text-sm text-neutral-700">Send us a photo or two and your porch measurements. We'll help finalize size and details.</p>
         </li>
         <li class="rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
-          <div class="flex items-center gap-3">
+          <div class="flex items_center gap-3">
             <span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-emerald-600 text-white font-semibold">2</span>
             <h3 class="font-semibold">Build & finish</h3>
           </div>
@@ -290,7 +297,7 @@
     </div>
   </section>
 
-  <!-- Story -->
+  <!-- Our Story -->
   <section class="py-16 sm:py-24 bg-neutral-100 border-y border-neutral-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-10 items-center">
       <div>
@@ -303,7 +310,54 @@
         </p>
       </div>
       <div class="rounded-3xl overflow-hidden border border-neutral-200 shadow-lg">
-        <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=1600&auto=format&fit=crop" alt="Woodworking in progress" class="w-full h-full object-cover">
+        <picture>
+          <source srcset="/assets/OurStory.webp" type="image/webp">
+          <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=1600&auto=format&fit=crop" alt="Seven Bass Carpentry — Our Story" class="w-full h-full object-cover">
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reviews -->
+  <section id="reviews" class="py-16 sm:py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify_between gap-4">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-bold">Reviews</h2>
+          <p class="mt-3 text-neutral-700">A few recent notes from homeowners. See more on our <a href="https://www.facebook.com/profile.php?id=61567707656819&sk=reviews" target="_blank" class="text-emerald-700 underline">Facebook reviews page</a>.</p>
+        </div>
+        <div class="hidden sm:flex gap-2">
+          <button id="revPrev" class="h-10 w-10 rounded-xl ring-1 ring-neutral-300" aria-label="Previous">‹</button>
+          <button id="revNext" class="h-10 w-10 rounded-xl ring-1 ring-neutral-300" aria-label="Next">›</button>
+        </div>
+      </div>
+      <div class="mt-8 relative">
+        <div class="sm:hidden absolute -top-14 right-4 flex gap-2">
+          <button id="revPrevM" class="h-10 w-10 rounded-xl ring-1 ring-neutral-300" aria-label="Previous">‹</button>
+          <button id="revNextM" class="h-10 w-10 rounded-xl ring-1 ring-neutral-300" aria-label="Next">›</button>
+        </div>
+        <div id="revTrack" class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-px-4 pb-2">
+          
+  <article class="snap-center shrink-0 w-80 sm:w-[28rem] rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+    <p class="text-neutral-800">“We love our swing! Beautiful work and did a great job on installation. Thank you!”</p>
+  </article>
+
+  <article class="snap-center shrink-0 w-80 sm:w-[28rem] rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+    <p class="text-neutral-800">“We had a porch swing built and it fits perfectly. So happy I paid for delivery and installation—I would have never been able to install. I am so excited to spend mornings on the porch enjoying this. Amazing work and highly recommend!”</p>
+  </article>
+
+  <article class="snap-center shrink-0 w-80 sm:w-[28rem] rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+    <p class="text-neutral-800">“William has an incredible gift of carpentry. We are in love with the swing he built for our home. He completed it in the allotted time, was punctual on install day, and professional throughout. I would recommend Seven Bass Carpentry to anyone!”</p>
+  </article>
+
+  <article class="snap-center shrink-0 w-80 sm:w-[28rem] rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+    <p class="text-neutral-800">“They did an amazing job and were a joy to work with! We love our new porch swing.”</p>
+  </article>
+
+  <article class="snap-center shrink-0 w-80 sm:w-[28rem] rounded-2xl bg-white border border-neutral-200 shadow-sm p-6">
+    <p class="text-neutral-800">“We needed a custom sized bed swing to fit the porch in our new home. William made the design and build process very easy and consistently gave updates. He delivered the finished product to our door and we couldn’t be happier with the results! The sturdy craftsmanship and attention to detail really stands out. We’re recommending Seven Bass to all of our friends.”</p>
+  </article>
+        </div>
       </div>
     </div>
   </section>
@@ -336,7 +390,7 @@
     </div>
   </section>
 
-  <!-- Contact (Netlify Forms) -->
+  <!-- Contact -->
   <section id="contact" class="py-16 sm:py-24 bg-neutral-100 border-y border-neutral-200">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl">
@@ -424,6 +478,24 @@
     </div>
   </footer>
 
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    // Year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Mobile nav toggle
+    const btn = document.getElementById('menuBtn');
+    const panel = document.getElementById('mobileMenu');
+    if (btn) btn.addEventListener('click', () => panel.classList.toggle('hidden'));
+
+    // Reviews scroll controls
+    const track = document.getElementById('revTrack');
+    const prev = document.getElementById('revPrev');
+    const next = document.getElementById('revNext');
+    const prevM = document.getElementById('revPrevM');
+    const nextM = document.getElementById('revNextM');
+    function scrollAmt(dir) { track.scrollBy({ left: dir * 320, behavior: 'smooth' }); }
+    ;[prev, prevM].forEach(b => b && b.addEventListener('click', () => scrollAmt(-1)));
+    ;[next, nextM].forEach(b => b && b.addEventListener('click', () => scrollAmt(1)));
+  </script>
 </body>
 </html>
