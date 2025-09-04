@@ -1,0 +1,1 @@
+This package adds /gallery.html to your site. Copy it to your project root. It expects /assets/gallery-01.webp … /assets/gallery-14.webp.
