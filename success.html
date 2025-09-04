@@ -4,42 +4,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Thanks — Seven Bass Carpentry</title>
-  <meta name="description" content="We received your message and will reply shortly.">
-  <meta name="theme-color" content="#0b0b0b">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    :root { --sb-border: 220 13% 90%; }
-    html { scroll-behavior: smooth; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-    .container { max-width: 1200px; margin-inline: auto; padding-inline: 1rem; }
-    .nav-link { letter-spacing: .06em; text-transform: uppercase; font-size: .82rem; color: rgb(23 23 23); }
-    .nav-link:hover { color: rgb(5 150 105); }
-    .card { border: 1px solid hsl(var(--sb-border)); border-radius: 1.25rem; background: white; box-shadow: 0 1px 2px rgba(0,0,0,.03); }
-    .btn { border-radius: 9999px; padding: .7rem 1.1rem; font-weight: 600; }
-    .btn-primary { background: rgb(5 150 105); color: white; }
-    .btn-primary:hover { background: rgb(4 120 87); }
-    .btn-ghost { border: 1px solid hsl(var(--sb-border)); }
-    .muted { color: rgb(82 82 82); }
-    .h1 { font-size: clamp(2rem, 3.4vw, 3.2rem); line-height: 1.1; font-weight: 800; }
-    .h2 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; }
-    .h3 { font-size: 1.125rem; font-weight: 700; }
-    .img-fit { width: 100%; height: auto; display: block; }
-    .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.04); }
-    /* Prevent horizontal spill */
-    html, body { overflow-x: hidden; }
-  </style>
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
-<body class="min-h-screen bg-neutral-50 text-neutral-900 grid place-items-center p-6">
-  <main class="card max-w-xl w-full p-8 text-center">
-    <img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry" class="h-8 mx-auto"
-         onerror="this.onerror=null;this.src='/assets/logo5_stamp.svg'">
-    <h1 class="h2 mt-4">Thanks — we got your request!</h1>
-    <p class="mt-2 muted">We’ll reply as soon as possible. Need to add details? Email
-      <a href="mailto:sevenbasscarpentry@gmail.com" class="underline text-emerald-700">sevenbasscarpentry@gmail.com</a>.</p>
-    <a href="/" class="btn btn-primary mt-6">Back to Home</a>
+<body style="min-height:100vh;display:grid;place-items:center">
+  <main class="card card-pad" style="max-width:640px;width:100%;text-align:center">
+    <img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry" style="height:32px;margin-inline:auto" onerror="this.onerror=null;this.src='/assets/logo5_stamp.svg'">
+    <h1 class="h2" style="margin-top:1rem">Thanks — we got your request!</h1>
+    <p class="muted" style="margin-top:.5rem">We’ll reply as soon as possible. Need to add details? Email
+      <a href="mailto:sevenbasscarpentry@gmail.com" style="color:var(--sb-accent);text-decoration:underline">sevenbasscarpentry@gmail.com</a>.</p>
+    <a href="/" class="btn btn-primary" style="margin-top:1rem">Back to Home</a>
   </main>
 </body>
 </html>
