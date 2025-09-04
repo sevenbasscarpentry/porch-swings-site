@@ -1,17 +1,20 @@
-# Seven Bass Carpentry — Site v3 (mobile nav + reviews + story image)
+# Seven Bass Carpentry — Minimal v5 (Kleanity-inspired)
 
-What changed
-- Mobile navigation added (hamburger on small screens).
-- Logo now tries PNG → SVG → WEBP and falls back to text if not found.
-- Story image points to `/assets/OurStory.webp` (with a placeholder fallback).
-- New Reviews section with horizontal slider and buttons; link to Facebook reviews.
-- Netlify Forms posts to `/success.html` (avoids 404).
+What’s inside
+- `index.html` — Minimalist homepage (top nav includes **Gallery**). Footer is fixed at **© 2024** as requested.
+- `gallery.html` — Vertical gallery (no horizontal overflow) with:
+  - Type filter chips (Twin, Twin XL, Full, Daybed (Backless), Classic Bench, Custom Size).
+  - Sticky details pane that updates on scroll.
+  - Optional vertical auto-scroll (toggle at top; pauses on interaction).
+- `success.html` — Thank-you page for Netlify Forms.
 
-Assets expected in /assets
-- logo5_stamp.png (preferred) or logo5_stamp.svg or logo5_stamp.webp
-- OurStory.webp
-- hero.webp
-- gallery-01.webp ... gallery-14.webp
+Assets expected (no file renames needed if you follow this):
+- `/assets/logo5_stamp.png` (or `.svg` fallback)
+- `/assets/hero.webp`
+- `/assets/OurStory.webp`
+- `/assets/gallery-01.webp` … `/assets/gallery-14.webp`
 
 Deploy
-- Drag the zip into Netlify (manual deploy), or commit files to GitHub and let Netlify auto-deploy.
+- Commit these three files into your GitHub repo root (`porch-swings-site`) and push. Netlify will auto-deploy.
+- Or drag-and-drop the zip to Netlify → Deploys → Upload deploy.
+
