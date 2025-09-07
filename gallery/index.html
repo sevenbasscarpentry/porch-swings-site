@@ -23,23 +23,9 @@
   <section class="section">
     <div class="container">
       <h1 class="h2">Gallery</h1>
-      <p class="muted" style="margin:.5rem 0 1rem">A look at recent builds. More photos on <a href="https://www.facebook.com/profile.php?id=61567707656819&sk=photos" style="color:var(--accent);text-decoration:underline">Facebook</a>.</p>
-      <div class="gallery-grid">
-        <article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-01.webp" alt="Project 1" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 1</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-02.webp" alt="Project 2" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 2</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-03.webp" alt="Project 3" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 3</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-04.webp" alt="Project 4" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 4</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-05.webp" alt="Project 5" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 5</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-06.webp" alt="Project 6" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 6</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-07.webp" alt="Project 7" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 7</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-08.webp" alt="Project 8" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 8</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-09.webp" alt="Project 9" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 9</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-10.webp" alt="Project 10" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 10</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-11.webp" alt="Project 11" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 11</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-12.webp" alt="Project 12" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 12</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-13.webp" alt="Project 13" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 13</div><span class="badge">Bed swing</span></div></article>
-<article class="card"><div class="media-frame"><img loading="lazy" src="/assets/gallery-14.webp" alt="Project 14" onerror="this.style.display='none'"></div><div class="caption"><div class="muted">Project 14</div><span class="badge">Bed swing</span></div></article>
-      </div>
+      <p class="muted" style="margin:.5rem 0 1rem">Auto‑pulled from our <a href="https://github.com/sevenbasscarpentry/porch-swings-site/tree/main/assets" style="color:var(--accent);text-decoration:underline">GitHub assets folder</a>. Add images there and they’ll appear here.</p>
+      <div class="gallery-grid" id="grid"></div>
+      <p id="gStatus" class="muted" style="margin-top:1rem"></p>
     </div>
   </section>
   
@@ -61,6 +47,37 @@
   <script>
     const mBtn=document.getElementById('mBtn'), mNav=document.getElementById('mNav');
     mBtn&&mBtn.addEventListener('click',()=>mNav.style.display=mNav.style.display==='block'?'none':'block');
+
+    // === Dynamic gallery from GitHub assets directory ===
+    const grid = document.getElementById('grid');
+    const statusEl = document.getElementById('gStatus');
+    const owner = 'sevenbasscarpentry', repo = 'porch-swings-site', folder = 'assets', branch = 'main';
+    const api = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=${branch}`;
+    const allow = ['.jpg','.jpeg','.png','.webp','.gif'];
+    const excludeStarts = ['logo','Logo','favicon','hero','Hero']; // don't show logos/hero
+
+    async function loadGallery(){
+      try {
+        statusEl.textContent = 'Loading photos…';
+        const res = await fetch(api);
+        if(!res.ok) throw new Error('GitHub API error '+res.status);
+        const files = await res.json();
+        const imgs = files.filter(f => f.type==='file' && allow.some(ext => f.name.endsWith(ext)) && !excludeStarts.some(p=>f.name.startsWith(p)));
+        if (!imgs.length){ statusEl.textContent = 'No images found in /assets yet. Add photos to the repo and refresh.'; return; }
+        const frag = document.createDocumentFragment();
+        imgs.forEach((f,i)=>{
+          const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${folder}/${encodeURIComponent(f.name)}`;
+          const card = document.createElement('article'); card.className='card';
+          card.innerHTML = `<div class="media-frame"><img loading="lazy" src="${raw}" alt="${f.name}"></div><div class="caption"><div class="muted">${f.name}</div><span class="badge">Bed swing</span></div>`;
+          frag.appendChild(card);
+        });
+        grid.appendChild(frag);
+        statusEl.textContent = imgs.length + ' photo' + (imgs.length===1?'':'s');
+      } catch(err){
+        statusEl.textContent = 'Error: ' + err.message + '. If this site is private, GitHub API calls may be rate‑limited.';
+      }
+    }
+    loadGallery();
   </script>
 </body>
 </html>

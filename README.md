@@ -1,14 +1,15 @@
-# Seven Bass — v11 (lighter teal theme, gallery fix, reviews, current year)
+# Seven Bass — v12 (Gallery auto-loads from GitHub)
 
-New:
-- Lighter green/blue theme.
-- Gallery guaranteed not to be blank (static cards; missing images hide gracefully).
-- Reviews slider with Facebook link (opens in new tab).
-- Footer year is dynamic (always current).
-- All external links auto-open in new tab.
+**What changed**
+- Gallery now pulls every image from your GitHub repo’s **assets/** folder via the GitHub API and shows them automatically.
+- Keeps lighter teal theme, reviews slider, dynamic year footer, external links open in new tab.
+- Forms + reCAPTCHA and admin submissions function unchanged.
 
-Admin submissions page uses env vars in Netlify:
-- FORMS_SITE_ID  (your Site ID / UUID)
-- FORMS_ACCESS_TOKEN  (Personal Access Token with read:forms)
+**How to add photos**
+- Commit any .jpg/.jpeg/.png/.webp to `assets/` (avoid names starting with logo/hero). Refresh `/gallery` — images will appear.
+
+**Admin env vars (unchanged)**
+- `FORMS_SITE_ID` (Site ID / UUID)
+- `FORMS_ACCESS_TOKEN` (Personal Access Token with `read:forms`)
 
 Generated 2025-09-07
