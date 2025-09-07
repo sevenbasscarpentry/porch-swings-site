@@ -1,39 +1,20 @@
-# Seven Bass — v8 (Forms email + reCAPTCHA + internal submissions)
+# Seven Bass — v9 (gaplumber-inspired + fixes)
 
-## What’s new
-- **reCAPTCHA** enabled on your contact form (`index.html`) and test page (`/form-test.html`).
-- **Internal submissions page** at `/admin/submissions.html` (password-protected) that lists all Netlify `quote` form submissions in a table and lets you download CSV.
-- **Netlify Function** `/.netlify/functions/list-submissions` fetches submissions securely using a server-side token.
+### What changed
+- New clean theme similar to **gaplumber**.
+- **Gallery route fixed** — lives at `/gallery/index.html` so `/gallery` works.
+- Contact form keeps **reCAPTCHA** and Netlify Forms.
+- Admin submissions page shows clear errors from the function (instead of generic "500").
 
-## Deploy
-1) Copy everything into your repo root (`porch-swings-site`) and push. Netlify will deploy and detect the function.
-2) In Netlify → **Site settings → Environment variables**, add:
-   - `FORMS_ACCESS_TOKEN` = your Netlify **personal access token** (scopes: `read:forms`).
-   - `FORMS_SITE_ID` = your site ID (find it in **Site settings → Site details**).
-3) In Netlify → **Site settings → Forms → reCAPTCHA**, enable reCAPTCHA (v2). Your pages include `<div data-netlify-recaptcha="true">` already.
-4) In **Forms → quote → Notifications**, add an **Email** notification to `sevenbasscarpentry@gmail.com` (if you haven’t already).
+### Deploy
+1) Copy files to repo root and push. Netlify auto-deploys.
+2) Set env vars in Netlify → *Site settings → Environment variables*:
+   - `FORMS_ACCESS_TOKEN` — Netlify Personal Access Token (scope: `read:forms`).
+   - `FORMS_SITE_ID` — your site ID (Site settings → Site details).
+3) Enable **reCAPTCHA** in Netlify → *Site settings → Forms → reCAPTCHA* (v2).
+4) Update `_headers` to change admin password (default `sevenbass:change-me`).
 
-## Accessing the submissions list
-- Visit: `https://YOURDOMAIN/admin/submissions.html`
-- You’ll be prompted for Basic Auth credentials (from `_headers`). Default (CHANGE THESE):
-  - **Username:** `sevenbass`
-  - **Password:** `change-me`
-- To change the password, edit the `_headers` file in the repo:
-```
-/admin/*
-  Basic-Auth: youruser:yourpass
-```
-(You can also manage passwords in Netlify UI → Site configuration → Access control.)
+### Internal submissions
+- Visit `/admin/submissions.html`. If you still see a 500, the page now shows the **exact reason** (usually missing env vars).
 
-## Notes
-- The function calls the Netlify API:
-  - `GET /api/v1/sites/{FORMS_SITE_ID}/forms` → finds the **quote** form
-  - `GET /api/v1/forms/{form_id}/submissions?per_page=500` → fetches submissions
-- Data returned: `created_at, name, email, phone, city, message` (based on your form fields).
-
-## Testing
-- Go to `/form-test.html`, submit a test entry (reCAPTCHA enabled).
-- Check **Netlify → Forms → Submissions** and your email notifications.
-- Visit `/admin/submissions.html` to see the table and **Download CSV**.
-
-— Last updated: 2025-09-07
+— Generated: 2025-09-07
