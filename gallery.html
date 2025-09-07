@@ -1,1 +1,95 @@
-<meta http-equiv="refresh" content="0;url=/gallery/">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gallery — Seven Bass Carpentry</title>
+  <meta name="description" content="Gallery of handcrafted porch bed swings by Seven Bass Carpentry.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <header class="header" id="hdr">
+    <div class="container header-row">
+      <a href="/" class="brand"><img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry"><span style="font-weight:700;letter-spacing:.02em">Seven Bass Carpentry</span></a>
+      <nav class="nav"><a href="/gallery.html">Gallery</a><a href="/#contact">Contact</a></nav>
+      <button class="mbtn" id="mBtn" aria-label="Open menu">☰</button>
+    </div>
+    <div class="mnav" id="mNav"><div class="container"><a href="/gallery.html">Gallery</a><a href="/#contact">Contact</a></div></div>
+  </header>
+  <section class="section">
+    <div class="container">
+      <h1 class="h2">Gallery</h1>
+      <p class="muted" style="margin:.5rem 0 1rem">
+        Photos load automatically from our <a href="https://github.com/sevenbasscarpentry/porch-swings-site/tree/main/assets">GitHub assets folder</a>. 
+        Add images there and they’ll appear here.
+      </p>
+      <div class="gallery-grid" id="grid"></div>
+      <p id="gStatus" class="muted" style="margin-top:1rem"></p>
+    </div>
+  </section>
+  
+<footer class="footer">
+  <div class="container section" style="padding-block:2rem">
+    <div class="row">
+      <p class="muted">© <span id="year"></span> Seven Bass Carpentry. All rights reserved.</p>
+      <p class="muted">Built in Georgia</p>
+    </div>
+  </div>
+</footer>
+<script>
+  function markExternalLinks(){
+    document.querySelectorAll('a[href^="http"]').forEach(a=>{
+      try{
+        const url = new URL(a.href);
+        if(url.origin !== window.location.origin){ a.target="_blank"; a.rel="noopener noreferrer"; }
+      }catch(e){}
+    });
+  }
+  document.addEventListener('DOMContentLoaded',()=>{
+    const y=document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+    markExternalLinks();
+  });
+</script>
+
+  <script>
+    const mBtn=document.getElementById('mBtn'), mNav=document.getElementById('mNav');
+    mBtn&&mBtn.addEventListener('click',()=>mNav.style.display=mNav.style.display==='block'?'none':'block');
+    window.addEventListener('scroll',()=>{ const hdr=document.getElementById('hdr'); if(window.scrollY>8) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled'); });
+
+    // Dynamic gallery from GitHub assets directory
+    const grid = document.getElementById('grid');
+    const statusEl = document.getElementById('gStatus');
+    const owner = 'sevenbasscarpentry', repo = 'porch-swings-site', folder = 'assets', branch = 'main';
+    const api = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=${branch}`;
+    const allow = ['.jpg','.jpeg','.png','.webp','.gif'];
+    const excludeStarts = ['logo','Logo','favicon','hero','Hero'];
+
+    async function loadGallery(){
+      try {
+        statusEl.textContent = 'Loading photos…';
+        const res = await fetch(api);
+        if(!res.ok) throw new Error('GitHub API error '+res.status);
+        const files = await res.json();
+        const imgs = files.filter(f => f.type==='file' && allow.some(ext => f.name.endsWith(ext)) && !excludeStarts.some(p=>f.name.startsWith(p)));
+        if (!imgs.length){ statusEl.textContent = 'No images found in /assets yet. Add photos to the repo and refresh.'; return; }
+        const frag = document.createDocumentFragment();
+        imgs.forEach((f)=>{
+          const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${folder}/${encodeURIComponent(f.name)}`;
+          const card = document.createElement('article'); card.className='card';
+          card.innerHTML = `<div class="media-frame"><img loading="lazy" src="${raw}" alt="${f.name}"></div><div class="caption"><div class="muted">${f.name}</div><span class="badge">Bed swing</span></div>`;
+          frag.appendChild(card);
+        });
+        grid.appendChild(frag);
+        statusEl.textContent = imgs.length + ' photo' + (imgs.length===1?'':'s');
+      } catch(err){
+        statusEl.textContent = 'Error: ' + err.message + '. If this site is private, GitHub calls may be rate‑limited.';
+      }
+    }
+    loadGallery();
+  </script>
+</body>
+</html>

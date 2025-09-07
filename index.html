@@ -12,26 +12,26 @@
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-  <header class="header">
+  <header class="header" id="hdr">
     <div class="container header-row">
       <a href="/" class="brand">
         <img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry" onerror="this.onerror=null;this.src='/assets/logo5_stamp.svg'">
         <span style="font-weight:700;letter-spacing:.02em">Seven Bass Carpentry</span>
       </a>
       <nav class="nav">
-        <a href="/gallery/">Gallery</a>
+        <a href="/gallery.html">Gallery</a>
         <a href="#process">Process</a>
         <a href="#contact">Contact</a>
       </nav>
       <div style="display:flex;gap:.6rem;align-items:center">
-        <a href="/gallery/" class="btn btn-ghost" id="ghost" style="display:none">Gallery</a>
+        <a href="/gallery.html" class="btn btn-ghost" id="ghost" style="display:none">Gallery</a>
         <a href="#contact" class="btn btn-primary" id="primary" style="display:none">Get a Quote</a>
         <button class="mbtn" id="mBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
     <div class="mnav" id="mNav">
       <div class="container">
-        <a href="/gallery/">Gallery</a>
+        <a href="/gallery.html">Gallery</a>
         <a href="#process">Process</a>
         <a href="#contact">Contact</a>
       </div>
@@ -46,7 +46,7 @@
         <p class="muted" style="margin-top:.6rem">Family‑run, custom built to order, and installed across Metro Atlanta and North Georgia. Over <strong>100 swings</strong> crafted with care.</p>
         <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
           <a href="#contact" class="btn btn-primary">Request a Quote</a>
-          <a href="/gallery/" class="btn btn-ghost">Open Gallery</a>
+          <a href="/gallery.html" class="btn btn-ghost">Open Gallery</a>
         </div>
         <div class="kpis">
           <div class="kpi"><div class="h3">100+</div><div class="muted">Swings handcrafted</div></div>
@@ -60,7 +60,7 @@
     <div class="container">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
         <h2 class="h2">Recent builds</h2>
-        <a href="/gallery/" style="color:var(--accent);text-decoration:underline">View all →</a>
+        <a href="/gallery.html" style="color:var(--accent);text-decoration:underline">View all →</a>
       </div>
       <div class="grid cols-2 cols-3">
         <article class="card"><div class="thumb"><img src="/assets/gallery-01.webp" alt="Project 1"></div><div class="card-pad"><div class="h3">Project 1</div><div class="muted" style="margin-top:.25rem">Handcrafted bed swing • Georgia</div></div></article>
@@ -86,7 +86,7 @@
   </section>
 
   
-<section class="section" style="background:var(--surface);border-top:1px solid var(--border)">
+<section class="section" style="background:#fff;border-top:1px solid var(--border)">
   <div class="container">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
       <h2 class="h2">Reviews</h2>
@@ -97,7 +97,7 @@
       <div class="slide"><p>We had a porch swing built and it fits perfectly. Delivery & install were worth it. I’m so excited to spend mornings on the porch—highly recommend!</p><small>Facebook review</small></div>
       <div class="slide"><p>William has an incredible gift of carpentry. Finished on time, punctual at install, and very professional. We’re in love with our swing!</p><small>Facebook review</small></div>
       <div class="slide"><p>They did an amazing job and were a joy to work with! We love our new porch swing.</p><small>Facebook review</small></div>
-      <div class="slide"><p>We needed a custom sized bed swing. William made it easy, kept us updated, and delivered to our door. Craftsmanship and detail really stand out.</p><small>Facebook review</small></div>
+      <div class="slide"><p>We needed a custom sized bed swing. William made it easy, kept us updated, and delivered to our door. Craftsmanship and detail really stands out.</p><small>Facebook review</small></div>
     </div>
   </div>
 </section>
@@ -136,16 +136,31 @@
   </div>
 </footer>
 <script>
+  function markExternalLinks(){
+    document.querySelectorAll('a[href^="http"]').forEach(a=>{
+      try{
+        const url = new URL(a.href);
+        if(url.origin !== window.location.origin){ a.target="_blank"; a.rel="noopener noreferrer"; }
+      }catch(e){}
+    });
+  }
   document.addEventListener('DOMContentLoaded',()=>{
     const y=document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
-    document.querySelectorAll('a[href^="http"]').forEach(a=>{ a.target="_blank"; a.rel="noopener noreferrer"; });
+    markExternalLinks();
   });
 </script>
 
   <script>
     const mBtn=document.getElementById('mBtn'), mNav=document.getElementById('mNav');
     mBtn&&mBtn.addEventListener('click',()=>mNav.style.display=mNav.style.display==='block'?'none':'block');
-    addEventListener('load',()=>{document.getElementById('ghost').style.display='inline-flex';document.getElementById('primary').style.display='inline-flex';});
+    addEventListener('load',()=>{
+      document.getElementById('ghost').style.display='inline-flex';
+      document.getElementById('primary').style.display='inline-flex';
+    });
+    // Sticky shrink on scroll
+    const hdr=document.getElementById('hdr');
+    window.addEventListener('scroll',()=>{ if(window.scrollY>8) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled'); });
+    // Simple auto-scroll for review slider
     const s=document.getElementById('slider'); if(s){ let t=0; setInterval(()=>{ t+=s.clientWidth*0.52; if(t>=(s.scrollWidth - s.clientWidth)) t=0; s.scrollTo({left:t,behavior:'smooth'}); }, 3500); }
   </script>
 </body>
