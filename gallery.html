@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container header-row">
       <a href="/" class="brand">
@@ -42,14 +41,12 @@
         <div id="chips" style="display:flex;flex-wrap:wrap;gap:.5rem"></div>
         <a href="#" id="clear" style="margin-left:auto;color:var(--muted);text-decoration:underline;font-size:.9rem">Clear</a>
       </div>
-
       <div style="display:grid;grid-template-columns:1fr;gap:2rem">
         <main>
           <div id="grid" class="grid cols-2 cols-3"></div>
         </main>
-
         <aside class="details">
-          <div class="card">
+          <div class="product-card" style="padding:1rem">
             <div style="font-weight:700">Details</div>
             <dl style="margin-top:.6rem">
               <div><dt>Type</dt><dd id="dType"></dd></div>
@@ -76,201 +73,48 @@
     </div>
   </footer>
 
-  <script id="gallery-data" type="application/json">
-[
-  {
-    "src": "/assets/gallery-01.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 1",
-    "type": "Twin Bed Swing",
-    "finish": "Painted",
-    "hanging": "Rope",
-    "size": "Twin",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-02.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 2",
-    "type": "Twin XL Bed Swing",
-    "finish": "Stained",
-    "hanging": "Chain (Galv)",
-    "size": "Twin XL",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-03.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 3",
-    "type": "Full Bed Swing",
-    "finish": "Natural/Clear",
-    "hanging": "Chain (Stainless)",
-    "size": "Full",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-04.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 4",
-    "type": "Daybed Swing (Backless)",
-    "finish": "Painted",
-    "hanging": "Rope",
-    "size": "Twin",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-05.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 5",
-    "type": "Classic Bench Swing",
-    "finish": "Stained",
-    "hanging": "Chain (Galv)",
-    "size": "Twin XL",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-06.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 6",
-    "type": "Custom Size",
-    "finish": "Natural/Clear",
-    "hanging": "Chain (Stainless)",
-    "size": "Custom",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-07.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 7",
-    "type": "Twin Bed Swing",
-    "finish": "Painted",
-    "hanging": "Rope",
-    "size": "Twin",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-08.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 8",
-    "type": "Twin XL Bed Swing",
-    "finish": "Stained",
-    "hanging": "Chain (Galv)",
-    "size": "Twin XL",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-09.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 9",
-    "type": "Full Bed Swing",
-    "finish": "Natural/Clear",
-    "hanging": "Chain (Stainless)",
-    "size": "Full",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-10.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 10",
-    "type": "Daybed Swing (Backless)",
-    "finish": "Painted",
-    "hanging": "Rope",
-    "size": "Twin",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-11.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 11",
-    "type": "Classic Bench Swing",
-    "finish": "Stained",
-    "hanging": "Chain (Galv)",
-    "size": "Twin XL",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-12.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 12",
-    "type": "Custom Size",
-    "finish": "Natural/Clear",
-    "hanging": "Chain (Stainless)",
-    "size": "Custom",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-13.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 13",
-    "type": "Twin Bed Swing",
-    "finish": "Painted",
-    "hanging": "Rope",
-    "size": "Twin",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  },
-  {
-    "src": "/assets/gallery-14.webp",
-    "alt": "Seven Bass Carpentry \u2014 Project 14",
-    "type": "Twin XL Bed Swing",
-    "finish": "Stained",
-    "hanging": "Chain (Galv)",
-    "size": "Twin XL",
-    "city": "Georgia",
-    "notes": "Handcrafted porch bed swing built to order; delivered and installed."
-  }
-]
-  </script>
   <script>
     const mBtn=document.getElementById('mBtn'), mNav=document.getElementById('mNav');
     mBtn&&mBtn.addEventListener('click',()=>mNav.style.display=mNav.style.display==='block'?'none':'block');
     addEventListener('load',()=>{document.getElementById('primary').style.display='inline-flex';});
 
-    const data = JSON.parse(document.getElementById('gallery-data').textContent);
-    const grid = document.getElementById('grid');
     const TYPES = ["Twin Bed Swing","Twin XL Bed Swing","Full Bed Swing","Daybed Swing (Backless)","Classic Bench Swing","Custom Size"];
-    let filterType = null;
+    const data = [];
+    for (let i=1;i<=14;i++){{
+      const t=TYPES[(i-1)%TYPES.length];
+      data.push({{
+        src:`/assets/gallery-${{String(i).padStart(2,'0')}}.webp`,
+        alt:`Seven Bass Carpentry — Project ${{i}}`,
+        type:t,
+        finish:["Painted","Stained","Natural/Clear"][(i-1)%3],
+        hanging:["Rope","Chain (Galv)","Chain (Stainless)"][(i-1)%3],
+        size:["Twin","Twin XL","Full"][(i-1)%3],
+        city:"Georgia",
+        notes:"Handcrafted porch bed swing built to order; delivered and installed."
+      }});
+    }}
 
-    function cardHTML(item) {
+    const grid = document.getElementById('grid');
+    function cardHTML(item) {{
       return `<article class="product-card">
-        <div class="thumb"><img loading="lazy" src="${item.src}" alt="${item.alt}"></div>
+        <div class="thumb"><img loading="lazy" src="${{item.src}}" alt="${{item.alt}}"></div>
         <div class="product-body">
-          <div class="product-title">${item.type}</div>
-          <div class="product-meta">${item.finish} • ${item.hanging} • ${item.city}</div>
+          <div class="product-title">${{item.type}}</div>
+          <div class="product-meta">${{item.finish}} • ${{item.hanging}} • ${{item.city}}</div>
         </div>
       </article>`;
-    }
-
-    function render() {
-      const list = filterType ? data.filter(d => d.type === filterType) : data.slice();
-      grid.innerHTML = list.map(cardHTML).join('');
-      // Details panel
-      if (list.length) setDetails(list[0]);
-      grid.querySelectorAll('.product-card').forEach((el, idx) => {
-        el.addEventListener('click', () => setDetails(list[idx]));
-      });
-    }
-
+    }}
+    function render(list){{ grid.innerHTML = list.map(cardHTML).join(''); if(list.length) setDetails(list[0]); grid.querySelectorAll('.product-card').forEach((el,idx)=>el.addEventListener('click',()=>setDetails(list[idx]))); }}
     const dType=document.getElementById('dType'), dFinish=document.getElementById('dFinish'), dHanging=document.getElementById('dHanging'), dSize=document.getElementById('dSize'), dCity=document.getElementById('dCity'), dNotes=document.getElementById('dNotes');
-    function setDetails(it){
-      dType.textContent=it.type; dFinish.textContent=it.finish||'—'; dHanging.textContent=it.hanging||'—'; dSize.textContent=it.size||'—'; dCity.textContent=it.city||'—'; dNotes.textContent=it.notes||'';
-    }
-
-    // Chips
-    const chips = document.getElementById('chips');
-    TYPES.forEach(t => {
-      const b = document.createElement('button');
-      b.className = 'chip'; b.textContent = t;
-      b.onclick = () => { filterType = (filterType===t ? null : t); render(); updateHash(); };
-      chips.appendChild(b);
-    });
-    document.getElementById('clear').onclick = (e) => { e.preventDefault(); filterType=null; render(); updateHash(); };
-
-    function updateHash(){ if (filterType) location.hash = 'type=' + encodeURIComponent(filterType); else history.replaceState(null, '', location.pathname); }
-    function fromHash(){ const m = location.hash.match(/type=(.+)$/); filterType = m ? decodeURIComponent(m[1]) : null; }
-
-    fromHash();
-    render();
-    window.addEventListener('hashchange', ()=>{ fromHash(); render(); });
+    function setDetails(it){{ dType.textContent=it.type; dFinish.textContent=it.finish; dHanging.textContent=it.hanging; dSize.textContent=it.size; dCity.textContent=it.city; dNotes.textContent=it.notes; }}
+    // Filter chips
+    const chips=document.getElementById('chips'); let filterType=null;
+    TYPES.forEach(t=>{{ const b=document.createElement('button'); b.className='chip'; b.textContent=t; b.onclick=()=>{{ filterType = (filterType===t?null:t); apply(); }}; chips.appendChild(b); }});
+    document.getElementById('clear').onclick=(e)=>{{ e.preventDefault(); filterType=null; apply(); }}
+    function apply(){{ const list = filterType ? data.filter(d=>d.type===filterType) : data; render(list); updateHash(); }}
+    function updateHash(){{ if (filterType) location.hash='type='+encodeURIComponent(filterType); else history.replaceState(null,'',location.pathname); }}
+    function fromHash(){{ const m=location.hash.match(/type=(.+)$/); filterType=m?decodeURIComponent(m[1]):null; }}
+    fromHash(); apply(); window.addEventListener('hashchange',()=>{{ fromHash(); apply(); }});
   </script>
 </body>
 </html>

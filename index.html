@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
-  <!-- Header -->
   <header class="header">
     <div class="container header-row">
       <a href="/" class="brand">
@@ -38,20 +37,19 @@
     </div>
   </header>
 
-  <!-- Banner (smaller height) -->
   <section class="section" style="padding-top:1rem">
-    <div class="container banner">
-      <div class="banner-media">
-        <picture>
-          <source srcset="/assets/hero.webp" type="image/webp">
-          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop" alt="Minimal porch bed swing">
-        </picture>
+    <div class="container">
+      <div class="product-card">
+        <div class="thumb">
+          <picture>
+            <source srcset="/assets/hero.webp" type="image/webp">
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop" alt="Minimal porch bed swing">
+          </picture>
+        </div>
       </div>
-      <div class="banner-caption">Minimal, handcrafted porch bed swings</div>
     </div>
   </section>
 
-  <!-- Featured products (use first 6 gallery images) -->
   <section class="section">
     <div class="container">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
@@ -59,7 +57,6 @@
         <a href="/gallery.html" style="color:var(--accent);text-decoration:underline">View all →</a>
       </div>
       <div class="grid cols-2 cols-3">
-        <!-- 6 cards -->
         <article class="product-card">
           <div class="thumb"><img src="/assets/gallery-01.webp" alt="Twin Bed Swing"></div>
           <div class="product-body">
@@ -106,7 +103,6 @@
     </div>
   </section>
 
-  <!-- Process -->
   <section id="process" class="section" style="background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
     <div class="container">
       <h2 style="font-size:1.6rem;font-weight:800">How it works</h2>
@@ -131,7 +127,6 @@
     </div>
   </section>
 
-  <!-- Contact -->
   <section id="contact" class="section">
     <div class="container">
       <h2 style="font-size:1.6rem;font-weight:800">Request a quote</h2>
@@ -146,16 +141,17 @@
           <label style="color:var(--muted);font-size:.9rem">City<input name="city" style="margin-top:.35rem" class="input"></label>
           <label style="color:var(--muted);font-size:.9rem">Notes / Inspiration Links<textarea name="message" rows="5" style="margin-top:.35rem" class="input"></textarea></label>
         </div>
+        <!-- reCAPTCHA widget -->
+        <div data-netlify-recaptcha="true" style="margin-top:1rem"></div>
         <div style="display:flex;gap:.75rem;margin-top:1rem">
           <button class="btn btn-primary" type="submit">Send Request</button>
           <a class="btn btn-ghost" href="mailto:sevenbasscarpentry@gmail.com">Email us</a>
         </div>
-        <p style="color:var(--muted);font-size:.8rem;margin-top:.6rem">Netlify Forms captures your submission. Turn on email notifications to sevenbasscarpentry@gmail.com in Netlify → Forms → Notifications.</p>
+        <p style="color:var(--muted);font-size:.8rem;margin-top:.6rem">Netlify Forms captures your submission and emails it to you. Ensure email notifications are enabled in Netlify → Forms → Notifications.</p>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container section" style="padding-block:2rem">
       <div class="row">

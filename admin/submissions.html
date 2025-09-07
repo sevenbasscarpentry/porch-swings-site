@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submissions — Seven Bass Carpentry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container header-row">
+      <a href="/" class="brand">
+        <img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry">
+        <span class="font-semibold" style="letter-spacing:.02em">Seven Bass Carpentry</span>
+      </a>
+      <div class="small">Internal — protected</div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="toolbar">
+        <h1 style="font-size:1.4rem;font-weight:800">Quote submissions</h1>
+        <div>
+          <button id="refresh" class="btn btn-ghost">Refresh</button>
+          <button id="csv" class="btn btn-primary">Download CSV</button>
+        </div>
+      </div>
+
+      <div id="status" class="small">Loading…</div>
+      <div class="spinner" id="spin"></div>
+
+      <div style="overflow:auto;margin-top:1rem">
+        <table class="table" id="tbl" style="display:none">
+          <thead>
+            <tr><th>Date</th><th>Name</th><th>Email</th><th>Phone</th><th>City</th><th>Message</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    async function load() {
+      const status = document.getElementById('status');
+      const spin = document.getElementById('spin');
+      const tbl = document.getElementById('tbl');
+      status.textContent = 'Loading…';
+      spin.style.display = 'block'; tbl.style.display='none';
+      try {
+        const res = await fetch('/.netlify/functions/list-submissions');
+        if (!res.ok) throw new Error('Server error ' + res.status);
+        const data = await res.json();
+        const tb = tbl.querySelector('tbody');
+        tb.innerHTML = data.map(row => `<tr>
+          <td>${new Date(row.created_at).toLocaleString()}</td>
+          <td>${(row.name||'')}</td>
+          <td>${(row.email||'')}</td>
+          <td>${(row.phone||'')}</td>
+          <td>${(row.city||'')}</td>
+          <td>${(row.message||'').replace(/</g,'&lt;')}</td>
+        </tr>`).join('');
+        status.textContent = data.length + ' submission' + (data.length===1?'':'s');
+        spin.style.display='none'; tbl.style.display='table';
+        window._rows = data;
+      } catch (e) {
+        status.textContent = 'Error: ' + e.message;
+        spin.style.display='none';
+      }
+    }
+    function toCSV(rows){
+      const cols=['created_at','name','email','phone','city','message'];
+      const esc = s => ('"'+String(s).replace(/"/g,'""')+'"');
+      const lines = [cols.join(',')].concat(rows.map(r=>cols.map(c=>esc(r[c]||'')).join(',')));
+      return lines.join('\n');
+    }
+    document.getElementById('refresh').onclick=load;
+    document.getElementById('csv').onclick=()=>{
+      const csv = toCSV(window._rows||[]);
+      const blob = new Blob([csv], {type:'text/csv'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a'); a.href=url; a.download='submissions.csv'; a.click();
+      URL.revokeObjectURL(url);
+    };
+    load();
+  </script>
+</body>
+</html>
