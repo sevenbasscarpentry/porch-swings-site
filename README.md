@@ -1,20 +1,21 @@
-# Seven Bass — v9 (gaplumber-inspired + fixes)
+# Seven Bass — v10 (lighter teal theme + gallery fix + admin diagnostics)
 
-### What changed
-- New clean theme similar to **gaplumber**.
-- **Gallery route fixed** — lives at `/gallery/index.html` so `/gallery` works.
-- Contact form keeps **reCAPTCHA** and Netlify Forms.
-- Admin submissions page shows clear errors from the function (instead of generic "500").
+## Deploy steps
+1) Copy all files to your repo root and push to Netlify.
+2) **Add environment variables** (Netlify → Site settings → Environment variables):
+   - `FORMS_SITE_ID` = your Netlify **Site ID** (looks like `77a3947f-32c7-49bc-bd83-c1db65128431`).  
+     Find it in **Site settings → Site details → Site information**.
+   - `FORMS_ACCESS_TOKEN` = a **Personal Access Token** with `read:forms` scope.
+     - Create one: Netlify (top-right avatar) → **User settings** → **Applications** → **Personal access tokens** → **New access token** → check **read:forms** → copy the token.
+     - Paste the token string as the value of `FORMS_ACCESS_TOKEN`.
+3) Turn on **reCAPTCHA v2**: Site settings → **Forms** → **reCAPTCHA** → Enable.
+4) Change admin password: edit `_headers` (`Basic-Auth: sevenbass:change-me`).
 
-### Deploy
-1) Copy files to repo root and push. Netlify auto-deploys.
-2) Set env vars in Netlify → *Site settings → Environment variables*:
-   - `FORMS_ACCESS_TOKEN` — Netlify Personal Access Token (scope: `read:forms`).
-   - `FORMS_SITE_ID` — your site ID (Site settings → Site details).
-3) Enable **reCAPTCHA** in Netlify → *Site settings → Forms → reCAPTCHA* (v2).
-4) Update `_headers` to change admin password (default `sevenbass:change-me`).
+## Routes
+- `/` — Home (lighter green/blue palette)
+- `/gallery` or `/gallery/` — Fixed gallery (no horizontal scroll)
+- `/admin/submissions.html` — Internal table + CSV (requires env vars above)
 
-### Internal submissions
-- Visit `/admin/submissions.html`. If you still see a 500, the page now shows the **exact reason** (usually missing env vars).
+If `/admin/submissions.html` shows an error, the function now returns diagnostic flags `hasToken` and `hasSiteId` to help pinpoint which env var is missing.
 
-— Generated: 2025-09-07
+— Generated 2025-09-07
