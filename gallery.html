@@ -15,19 +15,95 @@
   <header class="header" id="hdr">
     <div class="container header-row">
       <a href="/" class="brand"><img src="/assets/logo5_stamp.png" alt="Seven Bass Carpentry"><span style="font-weight:700;letter-spacing:.02em">Seven Bass Carpentry</span></a>
-      <nav class="nav"><a href="/gallery.html">Gallery</a><a href="/#contact">Contact</a></nav>
+      <nav class="nav"><a href="/gallery.html">Gallery</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></nav>
       <button class="mbtn" id="mBtn" aria-label="Open menu">☰</button>
     </div>
-    <div class="mnav" id="mNav"><div class="container"><a href="/gallery.html">Gallery</a><a href="/#contact">Contact</a></div></div>
+    <div class="mnav" id="mNav"><div class="container"><a href="/gallery.html">Gallery</a><a href="/#faq">FAQ</a><a href="/#contact">Contact</a></div></div>
   </header>
-  <section class="section">
+
+  <section class="section" style="background:#fff">
     <div class="container">
       <h1 class="h2">Gallery</h1>
-      
+
+      <div class="controls" id="filters">
+        <div class="hstack">
+          <span class="muted">Type:</span>
+          <span class="chip" data-k="type" data-v="classic">Classic</span>
+          <span class="chip" data-k="type" data-v="modern">Modern</span>
+          <span class="chip" data-k="type" data-v="farmhouse">Farmhouse</span>
+          <span class="chip" data-k="type" data-v="panel">Panel</span>
+          <span class="chip" data-k="type" data-v="slat">Slat</span>
+          <span class="chip" data-k="type" data-v="xback">X‑Back</span>
+        </div>
+        <div class="hstack">
+          <span class="muted">Size:</span>
+          <span class="chip" data-k="size" data-v="crib">Crib</span>
+          <span class="chip" data-k="size" data-v="twin">Twin</span>
+          <span class="chip" data-k="size" data-v="full">Full</span>
+          <span class="chip" data-k="size" data-v="queen">Queen</span>
+          <span class="chip" data-k="size" data-v="king">King</span>
+          <span class="chip" data-k="size" data-v="custom">Custom</span>
+        </div>
+        <div class="hstack">
+          <span class="muted">Hanging:</span>
+          <span class="chip" data-k="hanging" data-v="rope">Rope</span>
+          <span class="chip" data-k="hanging" data-v="chain">Chain</span>
+          <span class="chip" data-k="hanging" data-v="hidden">Hidden</span>
+        </div>
+        <div class="hstack">
+          <span class="muted">Finish:</span>
+          <span class="chip" data-k="finish" data-v="paint">Paint</span>
+          <span class="chip" data-k="finish" data-v="stain">Stain</span>
+          <span class="chip" data-k="finish" data-v="natural">Natural</span>
+          <span class="chip" data-k="finish" data-v="white">White</span>
+          <span class="chip" data-k="finish" data-v="black">Black</span>
+          <span class="chip" data-k="finish" data-v="walnut">Walnut</span>
+          <span class="chip" data-k="finish" data-v="oak">Oak</span>
+          <span class="chip" data-k="finish" data-v="cedar">Cedar</span>
+        </div>
+        <div class="hstack">
+          <input id="q" class="input" placeholder="Search caption or city" style="max-width:320px">
+          <select id="sort">
+            <option value="newest">Newest</option>
+            <option value="name">Name A–Z</option>
+          </select>
+          <select id="density">
+            <option value="normal">Comfortable</option>
+            <option value="dense">Compact</option>
+          </select>
+          <span class="right muted" id="count"></span>
+        </div>
+      </div>
+
+      <div class="controls">
+        <span class="muted">Show:</span>
+        <button data-size="15" class="active">15</button>
+        <button data-size="30">30</button>
+        <button data-size="all">All</button>
+      </div>
+
       <div class="gallery-grid" id="grid"></div>
+      <div class="controls" id="pager" style="justify-content:flex-end"></div>
       <p id="gStatus" class="muted" style="margin-top:1rem"></p>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lb" role="dialog" aria-modal="true">
+    <div class="lb-inner">
+      <img id="lbImg" class="lb-img" alt="Project photo">
+      <div class="lb-bar">
+        <div id="lbCaption" class="muted"></div>
+        <div class="hstack">
+          <button class="lb-btn" id="lbCopy">Copy link</button>
+          <button class="lb-btn" id="lbPrev">‹ Prev</button>
+          <button class="lb-btn" id="lbNext">Next ›</button>
+          <button class="lb-btn" id="lbClose">Close ✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   
 <footer class="footer">
   <div class="container section" style="padding-block:2rem">
@@ -40,10 +116,7 @@
 <script>
   function markExternalLinks(){
     document.querySelectorAll('a[href^="http"]').forEach(a=>{
-      try{
-        const url = new URL(a.href);
-        if(url.origin !== window.location.origin){ a.target="_blank"; a.rel="noopener noreferrer"; }
-      }catch(e){}
+      a.target="_blank"; a.rel="noopener noreferrer";
     });
   }
   document.addEventListener('DOMContentLoaded',()=>{
@@ -57,13 +130,124 @@
     mBtn&&mBtn.addEventListener('click',()=>mNav.style.display=mNav.style.display==='block'?'none':'block');
     window.addEventListener('scroll',()=>{ const hdr=document.getElementById('hdr'); if(window.scrollY>8) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled'); });
 
-    // Dynamic gallery from GitHub assets directory
+    // === Data & helpers ===
     const grid = document.getElementById('grid');
     const statusEl = document.getElementById('gStatus');
+    const pager = document.getElementById('pager');
+    const countEl = document.getElementById('count');
+    const sortSel = document.getElementById('sort');
+    const densitySel = document.getElementById('density');
+    const qInput = document.getElementById('q');
     const owner = 'sevenbasscarpentry', repo = 'porch-swings-site', folder = 'assets', branch = 'main';
     const api = `https://api.github.com/repos/${owner}/${repo}/contents/${folder}?ref=${branch}`;
     const allow = ['.jpg','.jpeg','.png','.webp','.gif'];
     const excludeStarts = ['logo','Logo','favicon','hero','Hero'];
+
+    let allItems = []; let filtered = []; let pageSize = 15; let page=1; let active = {type:[], size:[], hanging:[], finish:[]};
+    let currentIndex = -1; // for lightbox navigation
+
+    const chipEls = Array.from(document.querySelectorAll('.chip'));
+    chipEls.forEach(c=> c.addEventListener('click', ()=>{ const k=c.dataset.k, v=c.dataset.v; if(c.classList.contains('active')){ c.classList.remove('active'); active[k]=active[k].filter(x=>x!==v);} else { c.classList.add('active'); active[k].push(v);} page=1; apply(); }));
+    document.querySelectorAll('.controls button[data-size]').forEach(b=> b.addEventListener('click', ()=>{ document.querySelectorAll('.controls button[data-size]').forEach(x=>x.classList.remove('active')); b.classList.add('active'); pageSize = b.dataset.size==='all' ? 'all' : parseInt(b.dataset.size,10); page=1; render(); }));
+    sortSel.onchange = ()=>{ apply(); };
+    densitySel.onchange = ()=>{ grid.classList.toggle('dense', densitySel.value==='dense'); };
+    qInput.oninput = ()=>{ page=1; apply(); };
+
+    function friendly(name){
+      let base = name.replace(/\.[^.]+$/, ''); // remove extension
+      base = base.replace(/[-_]+/g,' ').replace(/\s+/g,' ').trim();
+      return base.charAt(0).toUpperCase() + base.slice(1);
+    }
+    function parseTags(name){
+      const s = name.toLowerCase();
+      const tags={type:null,size:null,hanging:null,finish:null,city:null};
+      const types=['classic','modern','farmhouse','panel','slat','xback','shaker','coastal'];
+      const sizes=['crib','twin','full','queen','king','custom'];
+      const hang=['rope','chain','hidden'];
+      const finishes=['paint','stain','natural','white','black','walnut','oak','cedar','maple','pecan','pine'];
+      const cities=['atlanta','athens','roswell','alpharetta','cumming','gainesville','marietta','suwanee','lawrenceville','dahlonega','buford','decatur','sandy springs','johns creek','milton','woodstock','acworth','duluth'];
+      types.forEach(x=>{ if(s.includes(x)) tags.type=x; });
+      sizes.forEach(x=>{ if(s.includes(x)) tags.size=x; });
+      hang.forEach(x=>{ if(s.includes(x)) tags.hanging=x; });
+      finishes.forEach(x=>{ if(s.includes(x)) tags.finish=x; });
+      cities.forEach(x=>{ if(s.includes(x)) tags.city=x; });
+      return tags;
+    }
+
+    function buildCard(item, idx){
+      const card = document.createElement('article'); card.className='card'; card.tabIndex=0;
+      const cap = friendly(item.name);
+      const tags = item.tags;
+      card.innerHTML = `<div class="media-frame"><img loading="lazy" src="${item.raw}" alt="${cap}"></div>
+        <div class="caption"><div class="muted">${cap}</div>
+        <span class="badge">${(tags.type||'Bed swing')}</span></div>`;
+      card.onclick = ()=> openLB(idx);
+      card.onkeypress = (e)=>{ if(e.key==='Enter') openLB(idx); };
+      return card;
+    }
+
+    function apply(){
+      const q = qInput.value.trim().toLowerCase();
+      filtered = allItems.filter(it=>{
+        const t = it.tags;
+        const passType = active.type.length? active.type.includes(t.type) : true;
+        const passSize = active.size.length? active.size.includes(t.size) : true;
+        const passHang = active.hanging.length? active.hanging.includes(t.hanging) : true;
+        const passFin = active.finish.length? active.finish.includes(t.finish) : true;
+        const inText = !q || (friendly(it.name).toLowerCase().includes(q) || (t.city||'').includes(q));
+        return passType && passSize && passHang && passFin && inText;
+      });
+      if(sortSel.value==='name'){ filtered.sort((a,b)=> friendly(a.name).localeCompare(friendly(b.name))); }
+      else { filtered.sort((a,b)=> b.timestamp - a.timestamp); }
+      page=1; render();
+    }
+
+    function render(){
+      grid.innerHTML='';
+      const total = filtered.length;
+      countEl.textContent = total + ' result' + (total===1?'':'s');
+      const maxPage = pageSize==='all' ? 1 : Math.ceil(total/pageSize);
+      const start = pageSize==='all' ? 0 : (page-1)*pageSize;
+      const end = pageSize==='all' ? total : Math.min(start+pageSize,total);
+      const slice = filtered.slice(start,end);
+      const frag = document.createDocumentFragment();
+      slice.forEach((f,i)=> frag.appendChild(buildCard(f, start+i)));
+      grid.appendChild(frag);
+      pager.innerHTML='';
+      if(pageSize!=='all' && maxPage>1){
+        const prev = document.createElement('button'); prev.textContent='‹ Prev'; prev.onclick=()=>{ if(page>1){ page--; render(); window.scrollTo({top:0,behavior:'smooth'});} };
+        pager.appendChild(prev);
+        // quick jump
+        const sel = document.createElement('select');
+        for(let p=1;p<=maxPage;p++){ const o=document.createElement('option'); o.value=p; o.textContent='Page '+p; if(p===page) o.selected=true; sel.appendChild(o); }
+        sel.onchange = ()=>{ page=parseInt(sel.value,10); render(); window.scrollTo({top:0,behavior:'smooth'}); };
+        pager.appendChild(sel);
+        const next = document.createElement('button'); next.textContent='Next ›'; next.onclick=()=>{ if(page<maxPage){ page++; render(); window.scrollTo({top:0,behavior:'smooth'});} };
+        pager.appendChild(next);
+      }
+      statusEl.textContent = total + ' photo' + (total===1?'':'s');
+    }
+
+    // Lightbox
+    const lb=document.getElementById('lb'), lbImg=document.getElementById('lbImg'), lbCaption=document.getElementById('lbCaption');
+    document.getElementById('lbClose').onclick = ()=> lb.style.display='none';
+    document.getElementById('lbPrev').onclick = ()=> { if(currentIndex>0){ openLB(currentIndex-1); } };
+    document.getElementById('lbNext').onclick = ()=> { if(currentIndex<filtered.length-1){ openLB(currentIndex+1); } };
+    document.getElementById('lbCopy').onclick = ()=> { const u=new URL(location.href); u.searchParams.set('img', filtered[currentIndex].name); navigator.clipboard.writeText(u.toString()); lbCaption.textContent += '  — link copied!'; setTimeout(()=>apply(),1200); };
+    lb.addEventListener('click', e=>{ if(e.target===lb) lb.style.display='none'; });
+
+    function openLB(idx){
+      currentIndex = idx;
+      const item = filtered[idx];
+      lbImg.src = item.raw;
+      lbCaption.textContent = friendly(item.name) + buildMeta(item.tags);
+      lb.style.display='flex';
+      const u=new URL(location.href); u.searchParams.set('img', item.name); history.replaceState(null, '', u.toString());
+    }
+    function buildMeta(t){
+      const parts=[]; if(t.type) parts.append=t.type;
+      return '';
+    }
 
     async function loadGallery(){
       try {
@@ -71,17 +255,18 @@
         const res = await fetch(api);
         if(!res.ok) throw new Error('GitHub API error '+res.status);
         const files = await res.json();
-        const imgs = files.filter(f => f.type==='file' && allow.some(ext => f.name.endsWith(ext)) && !excludeStarts.some(p=>f.name.startsWith(p)));
-        if (!imgs.length){ statusEl.textContent = 'No images found in /assets yet. Add photos to the repo and refresh.'; return; }
-        const frag = document.createDocumentFragment();
-        imgs.forEach((f)=>{
-          const raw = `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${folder}/${encodeURIComponent(f.name)}`;
-          const card = document.createElement('article'); card.className='card';
-          card.innerHTML = `<div class="media-frame"><img loading="lazy" src="${raw}" alt="${f.name}"></div><div class="caption"><div class="muted">${f.name}</div><span class="badge">Bed swing</span></div>`;
-          frag.appendChild(card);
-        });
-        grid.appendChild(frag);
-        statusEl.textContent = imgs.length + ' photo' + (imgs.length===1?'':'s');
+        const now = Date.now();
+        allItems = files.filter(f => f.type==='file' && allow.some(ext => f.name.toLowerCase().endsWith(ext)) && !excludeStarts.some(p=>f.name.startsWith(p)))
+                        .map(f=>({ name:f.name, raw:`https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${folder}/${encodeURIComponent(f.name)}`, tags:parseTags(f.name), timestamp: now - Math.random()*1e10 })); // fake ts order
+        if (!allItems.length){ statusEl.textContent = 'No images found in /assets yet.'; return; }
+        apply();
+
+        // deep-link ?img=filename
+        const imgParam = new URL(location.href).searchParams.get('img');
+        if(imgParam){
+          const idx = filtered.findIndex(i=>i.name===imgParam);
+          if(idx>-1) openLB(idx);
+        }
       } catch(err){
         statusEl.textContent = 'Error: ' + err.message + '. If this site is private, GitHub calls may be rate‑limited.';
       }

@@ -21,11 +21,12 @@
       <nav class="nav">
         <a href="/gallery.html">Gallery</a>
         <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </nav>
-      <div style="display:flex;gap:.6rem;align-items:center">
-        <a href="/gallery.html" class="btn btn-ghost" id="ghost" style="display:none">Gallery</a>
-        <a href="#contact" class="btn btn-primary" id="primary" style="display:none">Get a Quote</a>
+      <div class="hstack">
+        <a href="/gallery.html" class="btn btn-ghost hide" id="ghost">Gallery</a>
+        <a href="#contact" class="btn btn-primary hide" id="primary">Get a Quote</a>
         <button class="mbtn" id="mBtn" aria-label="Open menu">☰</button>
       </div>
     </div>
@@ -33,18 +34,20 @@
       <div class="container">
         <a href="/gallery.html">Gallery</a>
         <a href="#process">Process</a>
+        <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
   </header>
 
-  <section class="section" style="padding-top:1rem">
+  <!-- 1. HERO (white) -->
+  <section class="section" style="padding-top:1rem;background:#fff">
     <div class="container banner">
       <div class="banner-visual"><div class="thumb"><img src="/assets/hero.webp" alt="Porch swing"></div></div>
       <div class="banner-copy">
         <h1 class="h1">Handcrafted porch bed swings built in Georgia</h1>
         <p class="muted" style="margin-top:.6rem">Family‑run, custom built to order, and installed across Metro Atlanta and North Georgia. Over <strong>100 swings</strong> crafted with care.</p>
-        <div style="display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap">
+        <div class="hstack" style="margin-top:1rem">
           <a href="#contact" class="btn btn-primary">Request a Quote</a>
           <a href="/gallery.html" class="btn btn-ghost">Open Gallery</a>
         </div>
@@ -56,41 +59,60 @@
     </div>
   </section>
 
+  <!-- 2. MODELS (surface) -->
   <section class="section" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
     <div class="container">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
-        <h2 class="h2">Recent builds</h2>
-        <a href="/gallery.html" style="color:var(--accent);text-decoration:underline">View all →</a>
-      </div>
-      <div class="grid cols-2 cols-3">
-        <article class="card"><div class="thumb"><img src="/assets/gallery-01.webp" alt="Project 1"></div><div class="card-pad"><div class="h3">Project 1</div><div class="muted" style="margin-top:.25rem">Handcrafted bed swing • Georgia</div></div></article>
-        <article class="card"><div class="thumb"><img src="/assets/gallery-02.webp" alt="Project 2"></div><div class="card-pad"><div class="h3">Project 2</div><div class="muted" style="margin-top:.25rem">Handcrafted bed swing • Georgia</div></div></article>
-        <article class="card"><div class="thumb"><img src="/assets/gallery-03.webp" alt="Project 3"></div><div class="card-pad"><div class="h3">Project 3</div><div class="muted" style="margin-top:.25rem">Handcrafted bed swing • Georgia</div></div></article>
-        <article class="card"><div class="thumb"><img src="/assets/gallery-04.webp" alt="Project 4"></div><div class="card-pad"><div class="h3">Project 4</div><div class="muted" style="margin-top:.25rem">Handcrafted bed swing • Georgia</div></div></article>
-        <article class="card"><div class="thumb"><img src="/assets/gallery-05.webp" alt="Project 5"></div><div class="card-pad"><div class="h3">Project 5</div><div class="muted" style="margin-top:.25rem">Handcrafted bed swing • Georgia</div></div></article>
-        <article class="card"><div class="thumb"><img src="/assets/gallery-06.webp" alt="Project 6"></div><div class="card-pad"><div class="h3">Project 6</div><div class="muted" style="margin-top:.25rem">Handcrafted bed swing • Georgia</div></div></article>
+      <h2 class="h2">Popular models</h2>
+      <div class="grid cols-3 cols-4" style="margin-top:1rem">
+        <article class="card"><div class="thumb"><img src="/assets/gallery-01.webp" alt="Classic Rope bed swing"></div><div class="card-pad"><div class="h3">Classic Rope</div><div class="muted">Timeless profile with natural rope</div></div></article>
+        <article class="card"><div class="thumb"><img src="/assets/gallery-02.webp" alt="Modern Slat daybed"></div><div class="card-pad"><div class="h3">Modern Slat</div><div class="muted">Clean lines with slatted back</div></div></article>
+        <article class="card"><div class="thumb"><img src="/assets/gallery-03.webp" alt="Farmhouse X‑Back"></div><div class="card-pad"><div class="h3">Farmhouse X‑Back</div><div class="muted">Warm, rustic cross‑brace</div></div></article>
       </div>
     </div>
   </section>
 
-  <section id="process" class="section">
+  <!-- 3. OPTIONS (white) -->
+  <section class="section" style="background:#fff">
+    <div class="container">
+      <h2 class="h2">Options</h2>
+      <div class="grid cols-3" style="margin-top:1rem">
+        <div class="card card-pad"><div class="h3">Sizes</div><p class="muted">Crib, Twin, Full, Queen, Custom</p></div>
+        <div class="card card-pad"><div class="h3">Hanging</div><p class="muted">Rope, Chain, or Hidden hardware</p></div>
+        <div class="card card-pad"><div class="h3">Finish</div><p class="muted">Paint, Stain, Natural — we color‑match</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. PROCESS (surface) -->
+  <section id="process" class="section" style="background:var(--surface);border-top:1px solid var(--border)">
     <div class="container">
       <h2 class="h2">How it works</h2>
       <div class="grid cols-2" style="margin-top:1rem">
-        <div class="card card-pad"><div class="h3">1) Share your inspiration</div><p class="muted" style="margin-top:.35rem">Send photos and porch measurements. We’ll help finalize size and details.</p></div>
-        <div class="card card-pad"><div class="h3">2) Build & finish</div><p class="muted" style="margin-top:.35rem">Handcrafted, sanded smooth, and finished for the outdoors.</p></div>
-        <div class="card card-pad"><div class="h3">3) Delivery & install</div><p class="muted" style="margin-top:.35rem">Across GA with a full safety check at install.</p></div>
-        <div class="card card-pad"><div class="h3">4) Enjoy for years</div><p class="muted" style="margin-top:.35rem">Care tips included.</p></div>
+        <div class="card card-pad"><div class="h3">1) Share inspiration</div><p class="muted">Send photos and porch measurements. We’ll help finalize size and details.</p></div>
+        <div class="card card-pad"><div class="h3">2) Build & finish</div><p class="muted">Handcrafted, sanded smooth, and finished for the outdoors.</p></div>
+        <div class="card card-pad"><div class="h3">3) Delivery & install</div><p class="muted">Across GA with a full safety check at install.</p></div>
+        <div class="card card-pad"><div class="h3">4) Enjoy for years</div><p class="muted">Care tips included.</p></div>
       </div>
     </div>
   </section>
 
+  <!-- 5. FAQ (white) -->
+  <section id="faq" class="section" style="background:#fff">
+    <div class="container">
+      <h2 class="h2">FAQ</h2>
+      <details class="card card-pad"><summary class="h3">What’s the typical lead time?</summary><p class="muted">Built to order. We’ll confirm current lead time in your quote.</p></details>
+      <details class="card card-pad" style="margin-top:.8rem"><summary class="h3">Do you install?</summary><p class="muted">Yes — delivery and installation across Metro Atlanta and North GA.</p></details>
+      <details class="card card-pad" style="margin-top:.8rem"><summary class="h3">What mattress fits?</summary><p class="muted">Crib, Twin, Full, Queen, or custom sizes.</p></details>
+    </div>
+  </section>
+
+  <!-- 6. Reviews (surface) -->
   
-<section class="section" style="background:#fff;border-top:1px solid var(--border)">
+<section class="section" style="background:var(--surface);border-top:1px solid var(--border)">
   <div class="container">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem">
       <h2 class="h2">Reviews</h2>
-      <a href="https://www.facebook.com/profile.php?id=61567707656819&sk=reviews" target="_blank" rel="noopener noreferrer" style="color:var(--accent);text-decoration:underline">See all on Facebook →</a>
+      <a href="https://www.facebook.com/profile.php?id=61567707656819&sk=reviews" style="color:var(--accent);text-decoration:underline">See all on Facebook →</a>
     </div>
     <div class="slider" id="slider">
       <div class="slide"><p>We love our swing! Beautiful work and did a great job on installation. Thank you!</p><small>Facebook review</small></div>
@@ -103,7 +125,8 @@
 </section>
 
 
-  <section id="contact" class="section" style="background:var(--surface);border-top:1px solid var(--border)">
+  <!-- 7. CONTACT (white) -->
+  <section id="contact" class="section" style="background:#fff;border-top:1px solid var(--border)">
     <div class="container">
       <h2 class="h2">Request a quote</h2>
       <p class="muted" style="margin:.5rem 0 1rem">Tell us about your space and what you're envisioning. We’ll reply with guidance, pricing, and lead time.</p>
@@ -118,13 +141,15 @@
           <label class="muted" style="font-size:.9rem">Notes / Inspiration Links<textarea name="message" rows="5" class="input" style="margin-top:.35rem"></textarea></label>
         </div>
         <div data-netlify-recaptcha="true" style="margin-top:1rem"></div>
-        <div style="display:flex;gap:.75rem;margin-top:1rem">
+        <div class="hstack" style="margin-top:1rem">
           <button class="btn btn-primary" type="submit">Send Request</button>
           <a class="btn btn-ghost" href="mailto:sevenbasscarpentry@gmail.com">Email us</a>
         </div>
       </form>
     </div>
   </section>
+
+  <button class="fab" onclick="location.href='#contact'">Get a Quote</button>
 
   
 <footer class="footer">
@@ -138,10 +163,7 @@
 <script>
   function markExternalLinks(){
     document.querySelectorAll('a[href^="http"]').forEach(a=>{
-      try{
-        const url = new URL(a.href);
-        if(url.origin !== window.location.origin){ a.target="_blank"; a.rel="noopener noreferrer"; }
-      }catch(e){}
+      a.target="_blank"; a.rel="noopener noreferrer";
     });
   }
   document.addEventListener('DOMContentLoaded',()=>{
@@ -154,13 +176,11 @@
     const mBtn=document.getElementById('mBtn'), mNav=document.getElementById('mNav');
     mBtn&&mBtn.addEventListener('click',()=>mNav.style.display=mNav.style.display==='block'?'none':'block');
     addEventListener('load',()=>{
-      document.getElementById('ghost').style.display='inline-flex';
-      document.getElementById('primary').style.display='inline-flex';
+      document.getElementById('ghost').classList.remove('hide');
+      document.getElementById('primary').classList.remove('hide');
     });
-    // Sticky shrink on scroll
     const hdr=document.getElementById('hdr');
     window.addEventListener('scroll',()=>{ if(window.scrollY>8) hdr.classList.add('scrolled'); else hdr.classList.remove('scrolled'); });
-    // Simple auto-scroll for review slider
     const s=document.getElementById('slider'); if(s){ let t=0; setInterval(()=>{ t+=s.clientWidth*0.52; if(t>=(s.scrollWidth - s.clientWidth)) t=0; s.scrollTo({left:t,behavior:'smooth'}); }, 3500); }
   </script>
 </body>
