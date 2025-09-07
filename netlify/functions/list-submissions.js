@@ -13,7 +13,7 @@ export async function handler() {
     if (!formsRes.ok) { const t = await formsRes.text(); return { statusCode: formsRes.status, headers, body: JSON.stringify({ error: 'Unable to fetch forms', details: t }) }; }
     const forms = await formsRes.json();
     const form = forms.find(f => f.name === 'quote');
-    if (!form) return { statusCode: 404, headers, body: JSON.stringify({ error: 'Form \"quote\" not found on this site' }) };
+    if (!form) return { statusCode: 404, headers, body: JSON.stringify({ error: 'Form "quote" not found on this site' }) };
     const subsRes = await fetch(`${base}/forms/${form.id}/submissions?per_page=500`, { headers: auth });
     if (!subsRes.ok) { const t = await subsRes.text(); return { statusCode: subsRes.status, headers, body: JSON.stringify({ error: 'Unable to fetch submissions', details: t }) }; }
     const subs = await subsRes.json();

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,21 +21,8 @@
     </div>
   </div></section>
   <script>
-    async function load(){
-      const s=document.getElementById('status'), t=document.getElementById('tbl');
-      s.textContent='Loading…'; t.style.display='none';
-      try{
-        const res=await fetch('/.netlify/functions/list-submissions');
-        const text=await res.text(); let data; try{data=JSON.parse(text);}catch(e){data={error:'Invalid JSON from function',raw:text};}
-        if(!res.ok) throw new Error((data&&data.error)||('HTTP '+res.status));
-        const rows=data, tb=t.querySelector('tbody');
-        tb.innerHTML=rows.map(r=>`<tr><td>${new Date(r.created_at).toLocaleString()}</td><td>${r.name||''}</td><td>${r.email||''}</td><td>${r.phone||''}</td><td>${r.city||''}</td><td>${(r.message||'').replace(/</g,'&lt;')}</td></tr>`).join('');
-        s.textContent=rows.length+' submission'+(rows.length===1?'':'s'); t.style.display='table'; window._rows=rows;
-      }catch(e){ s.textContent='Error: '+e.message+' (check env vars FORMS_ACCESS_TOKEN and FORMS_SITE_ID in Netlify)'; }
-    }
-    function toCSV(rows){ const cols=['created_at','name','email','phone','city','message']; const esc=s=>('"'+String(s).replace(/"/g,'""')+'"'); return [cols.join(',')].concat((rows||[]).map(r=>cols.map(c=>esc(r[c]||'')).join(','))).join('\n'); }
-    document.getElementById('refresh').onclick=load;
-    document.getElementById('csv').onclick=()=>{ const csv=toCSV(window._rows||[]); const b=new Blob([csv],{type:'text/csv'}); const u=URL.createObjectURL(b); const a=document.createElement('a'); a.href=u; a.download='submissions.csv'; a.click(); URL.revokeObjectURL(u); };
-    load();
+    async function load(){const s=document.getElementById('status'),t=document.getElementById('tbl');s.textContent='Loading…';t.style.display='none';try{const res=await fetch('/.netlify/functions/list-submissions');const text=await res.text();let data;try{data=JSON.parse(text);}catch(e){data={error:'Invalid JSON from function',raw:text};}if(!res.ok)throw new Error((data&&data.error)||('HTTP '+res.status));const rows=data,tb=t.querySelector('tbody');tb.innerHTML=rows.map(r=>`<tr><td>${new Date(r.created_at).toLocaleString()}</td><td>${r.name||''}</td><td>${r.email||''}</td><td>${r.phone||''}</td><td>${r.city||''}</td><td>${(r.message||'').replace(/</g,'&lt;')}</td></tr>`).join('');s.textContent=rows.length+' submission'+(rows.length===1?'':'s');t.style.display='table';window._rows=rows;}catch(e){s.textContent='Error: '+e.message+' (check env vars FORMS_ACCESS_TOKEN and FORMS_SITE_ID in Netlify)';}}
+    function toCSV(rows){const cols=['created_at','name','email','phone','city','message'];const esc=s=>('"'+String(s).replace(/"/g,'""')+'"');return [cols.join(',')].concat((rows||[]).map(r=>cols.map(c=>esc(r[c]||'')).join(','))).join('\n');}
+    document.getElementById('refresh').onclick=load;document.getElementById('csv').onclick=()=>{const csv=toCSV(window._rows||[]);const b=new Blob([csv],{type:'text/csv'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download='submissions.csv';a.click();URL.revokeObjectURL(u);};load();
   </script>
 </body></html>
